@@ -37,7 +37,7 @@ namespace Game.Components.UI
 
             if(wantsText != null)
             {
-                wantsText.text = $"wants {member?.GiftRequest.DescriptionText}";
+                wantsText.text = GameplayText.GetWantsText(member?.GiftRequest.DescriptionText);
             }
 
             if(quirkTitleText != null)

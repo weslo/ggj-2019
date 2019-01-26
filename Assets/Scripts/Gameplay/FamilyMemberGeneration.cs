@@ -27,6 +27,7 @@ namespace Game.Gameplay
                         descriptionText: giftCategory.DescriptionText,
                         giftOptions: giftCategory.GiftOptions
                             .PickRandomUnique(3)
+                            .OrderBy(def => def.Cost)
                             .Select(def =>
                             {
                                 return new Gift(
