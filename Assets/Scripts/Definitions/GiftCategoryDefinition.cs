@@ -8,12 +8,12 @@ namespace Game.Definitions
     public sealed class GiftCategoryDefinition : ScriptableObject
     {
         [SerializeField]
-        private string descriptionText;
+        private string descriptionText = default(string);
         public string DescriptionText
             => descriptionText;
 
         [SerializeField]
-        private GiftDefinition[] giftOptions;
+        private GiftDefinition[] giftOptions = default(GiftDefinition[]);
         public GiftDefinition[] GiftOptions
             => giftOptions;
     }

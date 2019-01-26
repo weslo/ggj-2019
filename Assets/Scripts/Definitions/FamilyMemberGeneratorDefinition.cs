@@ -8,7 +8,7 @@ namespace Game.Definitions
     public sealed class FamilyMemberGeneratorDefinition : ScriptableObject
     {
         [SerializeField]
-        private FamilyMemberCategoryDefinition[] categories;
+        private FamilyMemberCategoryDefinition[] categories = default(FamilyMemberCategoryDefinition[]);
         public FamilyMemberCategoryDefinition[] Categories
             => categories;
     }

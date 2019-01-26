@@ -8,19 +8,19 @@ namespace Game.Components.UI
     public sealed class FamilyMemberInfoDisplay : UIMonoBehaviour
     {
         [SerializeField]
-        private Text nameText;
+        private Text nameText = default(Text);
 
         [SerializeField]
-        private Text relationshipText;
+        private Text relationshipText = default(Text);
 
         [SerializeField]
-        private Text wantsText;
+        private Text wantsText = default(Text);
 
         [SerializeField]
-        private Text quirkTitleText;
+        private Text quirkTitleText = default(Text);
 
         [SerializeField]
-        private Text quirkDescriptionText;
+        private Text quirkDescriptionText = default(Text);
 
         [UnityEventBinding]
         public void OnUpdateInfo(FamilyMember member)

@@ -8,17 +8,17 @@ namespace Game.Definitions
     public sealed class GiftDefinition : ScriptableObject
     {
         [SerializeField]
-        private string nameText;
+        private string nameText = default(string);
         public string NameText
             => nameText;
 
         [SerializeField]
-        private int cost;
+        private int cost = default(int);
         public int Cost
             => cost;
 
         [SerializeField]
-        private Sprite sprite;
+        private Sprite sprite = default(Sprite);
         public Sprite Sprite
             => sprite;
     }

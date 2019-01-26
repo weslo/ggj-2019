@@ -9,7 +9,7 @@ namespace Game.Components
     public sealed class GameplayController : SingletonMonoBehaviour<GameplayController>
     {
         [SerializeField]
-        private FamilyMemberGeneratorDefinition familyMemberGenerator;
+        private FamilyMemberGeneratorDefinition familyMemberGenerator = default(FamilyMemberGeneratorDefinition);
 
         public ReadOnlyCollection<FamilyMember> FamilyMembers
         {

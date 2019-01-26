@@ -8,27 +8,27 @@ namespace Game.Definitions
     public sealed class FamilyMemberCategoryDefinition : ScriptableObject
     {
         [SerializeField]
-        private string[] nameOptions;
+        private string[] nameOptions = default(string[]);
         public string[] NameOptions
             => nameOptions;
 
         [SerializeField]
-        private string[] relationshipNameOptions;
+        private string[] relationshipNameOptions = default(string[]);
         public string[] RelationshipNameOptions
             => relationshipNameOptions;
 
         [SerializeField]
-        private Sprite[] portraitOptions;
+        private Sprite[] portraitOptions = default(Sprite[]);
         public Sprite[] PortraitOptions
             => portraitOptions;
 
         [SerializeField]
-        private GiftCategoryDefinition[] giftCategoryOptions;
+        private GiftCategoryDefinition[] giftCategoryOptions = default(GiftCategoryDefinition[]);
         public GiftCategoryDefinition[] GiftCategoryOptions
             => giftCategoryOptions;
 
         [SerializeField]
-        private QuirkDefinition[] quirkOptions;
+        private QuirkDefinition[] quirkOptions = default(QuirkDefinition[]);
         public QuirkDefinition[] QuirkOptions
             => quirkOptions;
     }

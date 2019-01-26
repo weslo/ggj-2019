@@ -16,26 +16,26 @@ namespace Game.Components.UI
         [Header("Object References")]
 
         [SerializeField]
-        private FamilyMemberPortrait portraitPrefab;
+        private FamilyMemberPortrait portraitPrefab = default(FamilyMemberPortrait);
 
         [SerializeField]
-        private RectTransform portraitContainer;
+        private RectTransform portraitContainer = default(RectTransform);
 
         [Header("Tranformations")]
 
         [SerializeField]
-        private float distanceBetweenPortraits;
+        private float distanceBetweenPortraits = default(float);
 
         [SerializeField]
-        private float selectedPortraitScale;
+        private float selectedPortraitScale = 1;
 
         [SerializeField]
-        private float deselectedPortraitScale;
+        private float deselectedPortraitScale = 1;
 
         [Header("Events")]
 
         [SerializeField]
-        private FamilyMemberEvent onSelectFamilyMember;
+        private FamilyMemberEvent onSelectFamilyMember = default(FamilyMemberEvent);
 
         private int _selectedPortraitIndex = -1;
         public int SelectedPortraitIndex

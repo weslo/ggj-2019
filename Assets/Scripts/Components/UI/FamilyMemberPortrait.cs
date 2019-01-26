@@ -7,7 +7,7 @@ namespace Game.Components.UI
     public sealed class FamilyMemberPortrait : UIMonoBehaviour
     {
         [SerializeField]
-        private Image portraitImage;
+        private Image portraitImage = default(Image);
 
         private FamilyMember _familyMember;
         public FamilyMember FamilyMember

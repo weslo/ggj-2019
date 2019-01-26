@@ -8,12 +8,12 @@ namespace Game.Definitions
     public sealed class QuirkDefinition : ScriptableObject
     {
         [SerializeField]
-        private string nameText;
+        private string nameText = default(string);
         public string NameText
             => nameText;
 
         [SerializeField]
-        private string descriptionText;
+        private string descriptionText = default(string);
         public string DescriptionText
             => descriptionText;
     }
