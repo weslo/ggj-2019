@@ -7,7 +7,7 @@ using Game.Components.UI.Abstract;
 using Game.CSharpExtensions;
 using Game.Gameplay;
 
-namespace Game.Components.UI
+namespace Game.Components.UI.GameplayScreen
 {
     public sealed class FamilyMemberSelector : UIMonoBehaviour
     {

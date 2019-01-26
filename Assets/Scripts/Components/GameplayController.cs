@@ -7,23 +7,17 @@ using UnityEngine.Events;
 using Game.Components.Utility;
 using Game.Definitions;
 using Game.Gameplay;
+using Game.UnityExtensions.Scenes;
 
 namespace Game.Components
 {
-    public sealed class GameplayController : SingletonMonoBehaviour<GameplayController>
-    {
-        [Serializable]
-        public sealed class GiftSelectionEvent : UnityEvent<FamilyMember, Gift> { }
-
-        [Header("Object References")]
+    public sealed class GameplayController : PersistentSingletonMonoBehaviour<GameplayController>
+    {[Header("Object References")]
 
         [SerializeField]
         private FamilyMemberGeneratorDefinition familyMemberGenerator = default(FamilyMemberGeneratorDefinition);
 
-        [Header("Events")]
-
-        [SerializeField]
-        private GiftSelectionEvent onGiftSelected = default(GiftSelectionEvent);
+        public event Action<FamilyMember, Gift> OnGiftSelected;
 
         public ReadOnlyCollection<FamilyMember> FamilyMembers
         {
@@ -64,8 +58,13 @@ namespace Game.Components
             }
 
             selectedGifts[member] = gift;
+            OnGiftSelected?.Invoke(member, gift);
 
-            onGiftSelected?.Invoke(member, gift);
+            bool gameEnded = selectedGifts.All(kvp => kvp.Value != null);
+            if(gameEnded)
+            {
+                SceneFunctions.TransitionScene("Gameplay", "EndOfGameResults");
+            }
         }
 
         public Gift GetSelectedGift(FamilyMember member)
@@ -76,6 +75,11 @@ namespace Game.Components
             }
             
             return selectedGifts[member];
+        }
+
+        public ReadOnlyDictionary<FamilyMember, Gift> GetSelectedGifts()
+        {
+            return new ReadOnlyDictionary<FamilyMember, Gift>(selectedGifts);
         }
     }
 }

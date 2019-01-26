@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using Game.Attributes;
 using Game.Components.UI.Abstract;
 using Game.Gameplay;
 using Game.UnityExtensions;
 
-namespace Game.Components.UI
+namespace Game.Components.UI.GameplayScreen
 {
     public sealed class GiftOptionsController : UIMonoBehaviour
     {
@@ -51,6 +50,16 @@ namespace Game.Components.UI
                 });
         }
 
+        void Start()
+        {
+            GameplayController.Instance.OnGiftSelected += UpdateFamilyMemberSelectedGift;
+        }
+
+        void OnDestroy()
+        {
+            GameplayController.Instance.OnGiftSelected -= UpdateFamilyMemberSelectedGift;
+        }
+
         [UnityEventBinding]
         public void UpdateFamilyMember(FamilyMember member)
         {
@@ -58,7 +67,6 @@ namespace Game.Components.UI
             giftButtonPool.SetData(member.GiftRequest.GiftOptions);
         }
 
-        [UnityEventBinding]
         public void UpdateFamilyMemberSelectedGift(FamilyMember member, Gift gift)
         {
             if(member == selectedFamilyMember)

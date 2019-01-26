@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using Game.Components.UI.Abstract;
 using Game.Gameplay;
 
-namespace Game.Components.UI
+namespace Game.Components.UI.GameplayScreen
 {
     public sealed class GiftButton : UIButton
     {
