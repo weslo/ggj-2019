@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.ObjectModel;
+using UnityEngine;
 using Game.Components.Utility;
-using Game.CSharpExtensions;
 using Game.Definitions;
 using Game.Gameplay;
 
@@ -11,14 +11,18 @@ namespace Game.Components
         [SerializeField]
         private FamilyMemberGeneratorDefinition familyMemberGenerator;
 
-        void Start()
+        public ReadOnlyCollection<FamilyMember> FamilyMembers
         {
-            FamilyMemberGeneration
-                .GenerateFamilyMembers(familyMemberGenerator, 5)
-                .ForEach(member =>
-                {
-                    Debug.Log($"{member.Name} ({member.RelationshipName}) wants {member.GiftRequest.DescriptionText}.");
-                });
+            get;
+            private set;
+        }
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            FamilyMembers = FamilyMemberGeneration
+                .GenerateFamilyMembers(familyMemberGenerator, 5);
         }
     }
 }

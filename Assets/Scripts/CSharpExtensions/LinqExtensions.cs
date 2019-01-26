@@ -51,5 +51,20 @@ namespace Game.CSharpExtensions
 
             return collection;
         }
+
+        public static IEnumerable<T> Map<T>(this IEnumerable<T> collection, Action<T, int> action)
+        {
+            if(action != null)
+            {
+                int count = collection.Count();
+                for(int i = 0; i < count; i++)
+                {
+                    T element = collection.ElementAt(i);
+                    action(element, i);
+                }
+            }
+
+            return collection;
+        }
     }
 }
