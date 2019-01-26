@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using Game.CSharpExtensions;
 using Game.Gameplay;
 
 namespace Game.Components.UI
 {
-    [RequireComponent(typeof(RectTransform))]
     public sealed class FamilyMemberPortrait : UIMonoBehaviour
     {
         [SerializeField]

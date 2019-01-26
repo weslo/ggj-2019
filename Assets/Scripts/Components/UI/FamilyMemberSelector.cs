@@ -1,13 +1,18 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
+using Game.Attributes;
 using Game.CSharpExtensions;
 using Game.Gameplay;
 
 namespace Game.Components.UI
 {
-    [RequireComponent(typeof(RectTransform))]
     public sealed class FamilyMemberSelector : UIMonoBehaviour
     {
+        [Serializable]
+        public sealed class FamilyMemberEvent : UnityEvent<FamilyMember> { }
+
         [Header("Object References")]
 
         [SerializeField]
@@ -26,6 +31,11 @@ namespace Game.Components.UI
 
         [SerializeField]
         private float deselectedPortraitScale;
+
+        [Header("Events")]
+
+        [SerializeField]
+        private FamilyMemberEvent onSelectFamilyMember;
 
         private int _selectedPortraitIndex = -1;
         public int SelectedPortraitIndex
@@ -47,6 +57,8 @@ namespace Game.Components.UI
                         SelectedPortrait.RectTransform.localScale = Vector3.one * selectedPortraitScale;
                     }
 
+                    onSelectFamilyMember?.Invoke(SelectedPortrait?.FamilyMember);
+
                     portraits.Map((portrait, index) =>
                     {
                         portrait.RectTransform.localPosition = Vector3.right * distanceBetweenPortraits * (index - _selectedPortraitIndex);
@@ -66,6 +78,7 @@ namespace Game.Components.UI
 
         private FamilyMemberPortrait[] portraits;
 
+        
         void Start()
         {
             portraits = GameplayController
@@ -81,6 +94,7 @@ namespace Game.Components.UI
             SelectedPortraitIndex = 0;
         }
 
+        [UnityEventBinding]
         public void SelectRight()
         {
             if(SelectedPortraitIndex + 1 >= portraits.Length)
@@ -91,6 +105,7 @@ namespace Game.Components.UI
             SelectedPortraitIndex++;
         }
 
+        [UnityEventBinding]
         public void SelectLeft()
         {
             if(SelectedPortraitIndex <= 0)
