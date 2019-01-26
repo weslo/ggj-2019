@@ -3,8 +3,8 @@
 namespace Game.Definitions
 {
     [CreateAssetMenu(
-        fileName = "New Gift Definition",
-        menuName = "Game/GiftDefinition")]
+        fileName = "NewGiftDefinition",
+        menuName = "Game/Gift")]
     public sealed class GiftDefinition : ScriptableObject
     {
         [SerializeField]

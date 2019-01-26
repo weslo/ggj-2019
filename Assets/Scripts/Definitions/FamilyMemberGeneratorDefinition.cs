@@ -3,8 +3,8 @@
 namespace Game.Definitions
 {
     [CreateAssetMenu(
-        fileName = "New Family Member Generator Definition",
-        menuName = "Game/FamilyMemberGeneratorDefinition")]
+        fileName = "NewFamilyMemberGeneratorDefinition",
+        menuName = "Game/Family Member Generator")]
     public sealed class FamilyMemberGeneratorDefinition : ScriptableObject
     {
         [SerializeField]

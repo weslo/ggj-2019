@@ -3,8 +3,8 @@
 namespace Game.Definitions
 {
     [CreateAssetMenu(
-        fileName = "New Family Member Category Definition",
-        menuName = "Game/FamilyMemberCategoryDefinition")]
+        fileName = "NewFamilyMemberCategoryDefinition",
+        menuName = "Game/Family Member Category")]
     public sealed class FamilyMemberCategoryDefinition : ScriptableObject
     {
         [SerializeField]
@@ -15,5 +15,11 @@ namespace Game.Definitions
 
         [SerializeField]
         private Sprite[] portraitOptions;
+
+        [SerializeField]
+        private GiftCategoryDefinition[] giftCategoryOptions;
+
+        [SerializeField]
+        private QuirkDefinition[] quirkOptions;
     }
 }
