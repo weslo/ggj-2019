@@ -669,6 +669,7 @@ MonoBehaviour:
   giftButtonPrefab: {fileID: 2235975726792588202, guid: ac8909dbfabe14d33851ae5284e47671,
     type: 3}
   distanceBetweenGiftButtons: 100
+  purchasedGiftHeightModifer: 30
 --- !u!1 &1192331236
 GameObject:
   m_ObjectHideFlags: 0

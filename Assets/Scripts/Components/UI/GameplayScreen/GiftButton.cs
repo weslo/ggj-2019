@@ -12,6 +12,9 @@ namespace Game.Components.UI.GameplayScreen
 
         [SerializeField]
         private Text costText = default(Text);
+
+        [SerializeField]
+        private Image happinessImage = default(Image);
         
         private Gift _gift;
         public Gift Gift
@@ -31,6 +34,24 @@ namespace Game.Components.UI.GameplayScreen
                     if(costText != null)
                     {
                         costText.text = GameplayText.GetCostText(_gift.Cost);
+                    }
+                }
+            }
+        }
+        
+        private HappinessLevel _happinessLevel;
+        public HappinessLevel HappinessLevel
+        {
+            get => _happinessLevel;
+            set
+            {
+                if(_happinessLevel != value)
+                {
+                    _happinessLevel = value;
+
+                    if(happinessImage != null)
+                    {
+                        happinessImage.sprite = HappinessIcons.Instance.GetHappinessLevelSprite(_happinessLevel);
                     }
                 }
             }

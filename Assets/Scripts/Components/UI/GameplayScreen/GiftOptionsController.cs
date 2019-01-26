@@ -18,6 +18,9 @@ namespace Game.Components.UI.GameplayScreen
         [SerializeField]
         private float distanceBetweenGiftButtons = default(float);
 
+        [SerializeField]
+        private float purchasedGiftHeightModifer = default(float);
+
         private FamilyMember selectedFamilyMember;
 
         private ObjectPool<GiftButton, Gift> giftButtonPool;
@@ -33,6 +36,7 @@ namespace Game.Components.UI.GameplayScreen
                     button.RectTransform.SetParent(RectTransform, false);
                     button.RectTransform.localPosition = RectTransform.rect.center + Vector2.right * (distanceBetweenGiftButtons * index - (distanceBetweenGiftButtons * (giftButtonPool.Count - 1)) / 2);
                     button.Gift = gift;
+                    button.HappinessLevel = selectedFamilyMember.GiftRequest.GiftOptions[gift];
 
                     Gift selectedGift = GameplayController
                         .Instance
@@ -46,6 +50,10 @@ namespace Game.Components.UI.GameplayScreen
                         {
                             GameplayController.Instance.SetSelectedGift(selectedFamilyMember, gift);
                         });
+                    }
+                    else if(button.Gift == selectedGift)
+                    {
+                        button.RectTransform.localPosition = button.RectTransform.localPosition + Vector3.up * purchasedGiftHeightModifer;
                     }
                 });
         }
