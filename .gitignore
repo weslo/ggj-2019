@@ -1,0 +1,20 @@
+# Unity/C#
+[Ll]ibrary/
+[Ll]ogs/
+[Tt]emp/
+[Oo]bj/
+[Bb]in/
+/*.csproj
+/*.sln
+
+# Generated Docs
+/[Dd]ocs/
+
+# Visual Studio
+.vs/
+
+# Visual Studio Code
+.vscode/
+
+# Mac
+*.DS_Store
