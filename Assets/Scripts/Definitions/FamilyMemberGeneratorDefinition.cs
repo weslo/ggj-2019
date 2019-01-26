@@ -9,5 +9,7 @@ namespace Game.Definitions
     {
         [SerializeField]
         private FamilyMemberCategoryDefinition[] categories;
+        public FamilyMemberCategoryDefinition[] Categories
+            => categories;
     }
 }

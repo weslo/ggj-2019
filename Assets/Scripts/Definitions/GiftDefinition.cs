@@ -9,11 +9,17 @@ namespace Game.Definitions
     {
         [SerializeField]
         private string nameText;
+        public string NameText
+            => nameText;
 
         [SerializeField]
         private int cost;
+        public int Cost
+            => cost;
 
         [SerializeField]
         private Sprite sprite;
+        public Sprite Sprite
+            => sprite;
     }
 }

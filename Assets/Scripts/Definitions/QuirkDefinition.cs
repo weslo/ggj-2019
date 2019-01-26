@@ -9,8 +9,12 @@ namespace Game.Definitions
     {
         [SerializeField]
         private string nameText;
+        public string NameText
+            => nameText;
 
         [SerializeField]
         private string descriptionText;
+        public string DescriptionText
+            => descriptionText;
     }
 }

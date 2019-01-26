@@ -9,17 +9,27 @@ namespace Game.Definitions
     {
         [SerializeField]
         private string[] nameOptions;
+        public string[] NameOptions
+            => nameOptions;
 
         [SerializeField]
         private string[] relationshipNameOptions;
+        public string[] RelationshipNameOptions
+            => relationshipNameOptions;
 
         [SerializeField]
         private Sprite[] portraitOptions;
+        public Sprite[] PortraitOptions
+            => portraitOptions;
 
         [SerializeField]
         private GiftCategoryDefinition[] giftCategoryOptions;
+        public GiftCategoryDefinition[] GiftCategoryOptions
+            => giftCategoryOptions;
 
         [SerializeField]
         private QuirkDefinition[] quirkOptions;
+        public QuirkDefinition[] QuirkOptions
+            => quirkOptions;
     }
 }
