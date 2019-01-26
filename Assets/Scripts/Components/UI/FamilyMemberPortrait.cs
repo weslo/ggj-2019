@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using Game.Components.UI.Abstract;
 using Game.Gameplay;
 
 namespace Game.Components.UI

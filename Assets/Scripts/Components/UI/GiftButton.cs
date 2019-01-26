@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using Game.Components.UI.Abstract;
 using Game.Gameplay;
 
 namespace Game.Components.UI
 {
-    public sealed class GiftButton : UIMonoBehaviour
+    public sealed class GiftButton : UIButton
     {
         [SerializeField]
         private Image iconImage = default(Image);

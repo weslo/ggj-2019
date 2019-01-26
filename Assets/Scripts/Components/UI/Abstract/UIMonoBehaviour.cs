@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Game.Components.UI
+namespace Game.Components.UI.Abstract
 {
     [RequireComponent(typeof(RectTransform))]
     public abstract class UIMonoBehaviour : MonoBehaviour
