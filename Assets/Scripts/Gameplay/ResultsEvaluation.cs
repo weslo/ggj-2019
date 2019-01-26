@@ -12,7 +12,7 @@ namespace Game.Gameplay
                     .Select(kvp => new FamilyMemberResult(
                         familyMember: kvp.Key,
                         gift: kvp.Value,
-                        happinessLevel: HappinessLevel.Satisfied))
+                        happinessLevel: HappinessLevel.NoGift))
                     .ToArray(),
                 score: 1000);
         }

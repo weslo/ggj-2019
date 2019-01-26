@@ -2,6 +2,7 @@
 {
     public enum HappinessLevel
     {
+        NoGift = -3,
         Hate = -2,
         Disappointed = -1,
         Indifferent = 0,

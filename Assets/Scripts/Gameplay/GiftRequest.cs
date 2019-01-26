@@ -5,11 +5,11 @@ namespace Game.Gameplay
     public class GiftRequest
     {
         public readonly string DescriptionText;
-        public readonly ReadOnlyCollection<Gift> GiftOptions;
+        public readonly ReadOnlyDictionary<Gift, HappinessLevel> GiftOptions;
 
         public GiftRequest(
             string descriptionText,
-            ReadOnlyCollection<Gift> giftOptions)
+            ReadOnlyDictionary<Gift, HappinessLevel> giftOptions)
         {
             DescriptionText = descriptionText;
             GiftOptions = giftOptions;

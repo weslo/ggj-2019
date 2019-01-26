@@ -32,7 +32,15 @@ namespace Game.Components
             base.Awake();
 
             FamilyMembers = FamilyMemberGeneration
-                .GenerateFamilyMembers(familyMemberGenerator, 5);
+                .GenerateFamilyMembers(
+                    generator: familyMemberGenerator,
+                    numFamilyMembers: 5,
+                    giftHappinessOptions:new []
+                        {
+                            HappinessLevel.Satisfied,
+                            HappinessLevel.Happy,
+                            HappinessLevel.Love,
+                        });
             
             selectedGifts = FamilyMembers
                 .ToDictionary(
@@ -52,7 +60,7 @@ namespace Game.Components
                 throw new Exception($"{member.Name} already has a gift selected.");
             }
 
-            if(!member.GiftRequest.GiftOptions.Contains(gift))
+            if(!member.GiftRequest.GiftOptions.ContainsKey(gift))
             {
                 throw new Exception($"Gift {gift.Name} is not a valid choice for {member.Name}.");
             }

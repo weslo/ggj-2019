@@ -64,14 +64,14 @@ namespace Game.Components.UI.GameplayScreen
         public void UpdateFamilyMember(FamilyMember member)
         {
             selectedFamilyMember = member;
-            giftButtonPool.SetData(member.GiftRequest.GiftOptions);
+            giftButtonPool.SetData(member.GiftRequest.GiftOptions.Keys);
         }
 
         public void UpdateFamilyMemberSelectedGift(FamilyMember member, Gift gift)
         {
             if(member == selectedFamilyMember)
             {
-                giftButtonPool.SetData(member.GiftRequest.GiftOptions);
+                giftButtonPool.SetData(member.GiftRequest.GiftOptions.Keys);
             }
         }
     }

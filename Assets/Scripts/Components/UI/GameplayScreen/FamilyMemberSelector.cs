@@ -60,7 +60,7 @@ namespace Game.Components.UI.GameplayScreen
 
                     onSelectFamilyMember?.Invoke(SelectedPortrait?.FamilyMember);
 
-                    portraits.Map((portrait, index) =>
+                    portraits.ForEach((portrait, index) =>
                     {
                         portrait.RectTransform.localPosition = Vector3.right * distanceBetweenPortraits * (index - _selectedPortraitIndex);
                         portrait.RectTransform.localScale = Vector3.one * (SelectedPortrait == portrait ? selectedPortraitScale : deselectedPortraitScale);

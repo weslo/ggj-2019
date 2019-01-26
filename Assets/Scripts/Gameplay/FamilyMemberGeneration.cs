@@ -10,7 +10,8 @@ namespace Game.Gameplay
     {
         public static ReadOnlyCollection<FamilyMember> GenerateFamilyMembers(
             FamilyMemberGeneratorDefinition generator,
-            int numFamilyMembers)
+            int numFamilyMembers,
+            HappinessLevel[] giftHappinessOptions)
         {
             var members = new List<FamilyMember>();
 
@@ -26,16 +27,13 @@ namespace Game.Gameplay
                     giftRequest: new GiftRequest(
                         descriptionText: giftCategory.DescriptionText,
                         giftOptions: giftCategory.GiftOptions
-                            .PickRandomUnique(3)
+                            .PickRandomUnique(giftHappinessOptions.Length)
                             .OrderBy(def => def.Cost)
-                            .Select(def =>
-                            {
-                                return new Gift(
-                                    name: def.NameText,
-                                    cost: def.Cost,
-                                    sprite: def.Sprite);
-                            })
-                            .ToList()
+                            .Select(def => new Gift(
+                                name: def.NameText,
+                                cost: def.Cost,
+                                sprite: def.Sprite))
+                            .Map((gift, i) => giftHappinessOptions[i])
                             .AsReadOnly())
                 ));
             });

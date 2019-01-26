@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace Game.CSharpExtensions
+﻿namespace Game.CSharpExtensions
 {
     public static class ArrayExtensions
     {
@@ -14,6 +11,22 @@ namespace Game.CSharpExtensions
 
             int index = UnityEngine.Random.Range(0, arr.Length);
             return arr[index];
+        }
+
+        public static int IndexOf<T>(this T[] arr, T element)
+            where T : class
+        {
+            int found = -1;
+            Functions.Repeat(arr.Length, i =>
+            {
+                if(arr[i] == element)
+                {
+                    found = i;
+                    return;
+                }
+            });
+
+            return found;
         }
     }
 }
