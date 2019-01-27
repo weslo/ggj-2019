@@ -12,5 +12,10 @@ namespace Game.Components.UI.StartScreen
             GameplayController.Instance.RestartGame();
             SceneFunctions.TransitionScene("StartScreen", "Gameplay");
         }
+        [UnityEventBinding]
+        public void OnPressAboutButton()
+        {
+            SceneFunctions.TransitionScene("StartScreen", "AboutScreen");
+        }
     }
 }
