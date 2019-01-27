@@ -56,6 +56,7 @@ namespace Game.Components.UI.GameplayScreen
                     if(iconImage != null)
                     {
                         iconImage.sprite = _gift.Sprite;
+                        iconImage.GraphicUpdateComplete();
                     }
 
                     if(costText != null)
@@ -111,6 +112,8 @@ namespace Game.Components.UI.GameplayScreen
             {
                 giftNameText.enabled = true;
             }
+            
+            RectTransform.SetAsLastSibling();
 
             TweenManager.Cancel(this);
             TransformTweens.TweenRectTransformSize(

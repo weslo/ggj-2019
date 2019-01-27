@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c82c2f48493b844ca9823cde2b98564d, type: 3}
   m_Name: EdgyDoubleAStoryGame
   m_EditorClassIdentifier: 
-  nameText: Edge Double-A Story Game
+  nameText: Edgy Double-A Story Game
   cost: 20
   sprite: {fileID: 21300000, guid: 623561c8434c6495ea0b3a1973ee3870, type: 3}
