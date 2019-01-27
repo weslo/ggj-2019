@@ -86,6 +86,14 @@ namespace Game.Components.UI.GameplayScreen
                 .ToArray();
 
             SelectedPortraitIndex = 0;
+
+            GameplayController.Instance.OnGiftSelected += OnGiftSelected;
+        }
+
+        void OnDestroy()
+        {
+            GameplayController.Instance.OnGiftSelected -= OnGiftSelected;
+            TimerManager.Cancel(this);
         }
 
         [UnityEventBinding]
@@ -108,6 +116,46 @@ namespace Game.Components.UI.GameplayScreen
             }
 
             SelectedPortraitIndex--;
+        }
+
+        private void OnGiftSelected(FamilyMember member, Gift gift)
+        {
+            if(SelectedPortrait.FamilyMember == member)
+            {
+                TimerManager.Schedule(
+                    time: TransformTweens.QuickTweenDuration,
+                    id: this)
+                    .OnComplete(SelectNextAvailable);
+            }
+        }
+
+        private void SelectNextAvailable()
+        {
+            if(GameplayController.Instance.IsGameEnded())
+            {
+                return;
+            }
+
+            Func<int, bool> giftNotPurchased = i
+                => GameplayController.Instance.GetSelectedGift(portraits[i].FamilyMember) == null;
+
+            for(int i = SelectedPortraitIndex + 1; i < portraits.Length; i++)
+            {
+                if(giftNotPurchased(i))
+                {
+                    SelectedPortraitIndex = i;
+                    return;
+                }
+            }
+
+            for(int i = 0; i < SelectedPortraitIndex; i++)
+            {
+                if(giftNotPurchased(i))
+                {
+                    SelectedPortraitIndex = i;
+                    return;
+                }
+            }
         }
     }
 }

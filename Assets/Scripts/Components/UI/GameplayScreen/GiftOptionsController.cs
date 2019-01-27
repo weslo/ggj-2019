@@ -58,7 +58,11 @@ namespace Game.Components.UI.GameplayScreen
                         localPosition += Vector3.up * purchasedGiftHeightModifer;
                     }
 
-                    TransformTweens.TweenLocalPosition(button.RectTransform, localPosition, TransformTweens.QuickTweenDuration);
+                    TransformTweens.TweenLocalPosition(
+                        transform: button.RectTransform,
+                        localPosition: localPosition,
+                        duration: TransformTweens.QuickTweenDuration,
+                        id: this);
                 });
         }
 
@@ -70,6 +74,7 @@ namespace Game.Components.UI.GameplayScreen
         void OnDestroy()
         {
             GameplayController.Instance.OnGiftSelected -= UpdateFamilyMemberSelectedGift;
+            TweenManager.Cancel(this);
         }
 
         [UnityEventBinding]

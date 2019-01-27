@@ -100,17 +100,7 @@ namespace Game.Components
             selectedGifts[member] = gift;
             OnGiftSelected?.Invoke(member, gift);
 
-            bool purchasedGiftsForEveryone = selectedGifts.All(kvp => kvp.Value != null);
-            bool cannotAffordAnyMoreGifts = selectedGifts
-                .Keys
-                .All(m => m
-                    .GiftRequest
-                    .GiftOptions
-                    .Keys
-                    .All(g => g.Cost > Budget));
-
-            bool gameEnded = purchasedGiftsForEveryone || cannotAffordAnyMoreGifts;
-            if(gameEnded)
+            if(IsGameEnded())
             {
                 SceneFunctions.TransitionScene("Gameplay", "EndOfGameResults");
             }
@@ -129,6 +119,20 @@ namespace Game.Components
         public ReadOnlyDictionary<FamilyMember, Gift> GetSelectedGifts()
         {
             return new ReadOnlyDictionary<FamilyMember, Gift>(selectedGifts);
+        }
+
+        public bool IsGameEnded()
+        {
+            bool purchasedGiftsForEveryone = selectedGifts.All(kvp => kvp.Value != null);
+            bool cannotAffordAnyMoreGifts = selectedGifts
+                .Keys
+                .All(m => m
+                    .GiftRequest
+                    .GiftOptions
+                    .Keys
+                    .All(g => g.Cost > Budget));
+
+            return purchasedGiftsForEveryone || cannotAffordAnyMoreGifts;
         }
     }
 }
