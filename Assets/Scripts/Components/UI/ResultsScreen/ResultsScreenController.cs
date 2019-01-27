@@ -114,7 +114,7 @@ namespace Game.Components.UI.ResultsScreen
         public void OnPressPlayAgain()
         {
             GameplayController.Instance.RestartGame();
-            SceneFunctions.TransitionScene("EndOfGameResults", "Gameplay");
+            SceneFunctions.TransitionScene("EndOfGameResults", "StartScreen");
         }
 
         private void EvaluateQuirk(FamilyMember member)
