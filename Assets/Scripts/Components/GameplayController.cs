@@ -25,12 +25,11 @@ namespace Game.Components
             private set;
         }
 
-        private Dictionary<FamilyMember, Gift> selectedGifts;
+        private Dictionary<FamilyMember, Gift> selectedGifts
+            = new Dictionary<FamilyMember, Gift>();
 
-        protected override void Awake()
+        public void RestartGame()
         {
-            base.Awake();
-
             FamilyMembers = FamilyMemberGeneration
                 .GenerateFamilyMembers(
                     generator: familyMemberGenerator,

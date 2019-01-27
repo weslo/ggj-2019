@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using Game.Attributes;
 using Game.Components.UI.Abstract;
 using Game.CSharpExtensions;
 using Game.Gameplay;
+using Game.UnityExtensions.Scenes;
 
 namespace Game.Components.UI.ResultsScreen
 {
@@ -34,6 +36,13 @@ namespace Game.Components.UI.ResultsScreen
                 });
 
             scoreText.text = $"SCORE: {results.Score}";
+        }
+
+        [UnityEventBinding]
+        public void OnPressPlayAgain()
+        {
+            GameplayController.Instance.RestartGame();
+            SceneFunctions.TransitionScene("EndOfGameResults", "Gameplay");
         }
     }
 }

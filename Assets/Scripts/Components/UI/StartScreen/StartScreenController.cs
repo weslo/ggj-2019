@@ -9,6 +9,7 @@ namespace Game.Components.UI.StartScreen
         [UnityEventBinding]
         public void OnPressPlay()
         {
+            GameplayController.Instance.RestartGame();
             SceneFunctions.TransitionScene("StartScreen", "Gameplay");
         }
     }
