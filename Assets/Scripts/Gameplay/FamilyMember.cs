@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Game.Gameplay.Quirks;
 
 namespace Game.Gameplay
 {
@@ -8,17 +9,20 @@ namespace Game.Gameplay
         public readonly string RelationshipName;
         public readonly Sprite PortraitSprite;
         public readonly GiftRequest GiftRequest;
+        public readonly AbstractQuirk Quirk;
 
         public FamilyMember(
             string name,
             string relationshipName,
             Sprite portraitSprite,
-            GiftRequest giftRequest)
+            GiftRequest giftRequest,
+            AbstractQuirk quirk)
         {
             Name = name;
             RelationshipName = relationshipName;
             PortraitSprite = portraitSprite;
             GiftRequest = giftRequest;
+            Quirk = quirk;
         }
     }
 }

@@ -68,6 +68,19 @@ namespace Game.CSharpExtensions
             return collection;
         }
 
+        public static IDictionary<K, V> ForEach<K, V>(this IDictionary<K, V> dict, Action<K, V> action)
+        {
+            if(action != null)
+            {
+                foreach(KeyValuePair<K, V> kvp in dict)
+                {
+                    action(kvp.Key, kvp.Value);
+                }
+            }
+
+            return dict;
+        }
+
         public static Dictionary<K, V> Map<K, V>(this IEnumerable<K> collection, Func<K, int, V> func)
         {
             var dict = new Dictionary<K, V>();

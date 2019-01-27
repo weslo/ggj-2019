@@ -7,7 +7,7 @@ namespace Game.Gameplay
 {
     public static class ResultsEvaluation
     {
-        private const int happinessMultiplier = 100;
+        public const int HappinessMultiplier = 100;
 
         public static EndOfGameResults EvaluateGameResults(ReadOnlyDictionary<FamilyMember, Gift> choices)
         {
@@ -40,7 +40,7 @@ namespace Game.Gameplay
         public static int CalculateBaseScoreForGiftChoice(FamilyMember member, Gift gift)
         {
             HappinessLevel happiness = GetHappinessLevelForGiftChoice(member, gift);
-            return (int)happiness * happinessMultiplier;
+            return (int)happiness * HappinessMultiplier;
         }
     }
 }

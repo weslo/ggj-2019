@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 using Game.Attributes;
 using Game.Components.Scheduling;
@@ -48,16 +49,25 @@ namespace Game.Components.UI.ResultsScreen
             }
         }
 
+        private Dictionary<FamilyMember, FamilyMemberPortrait> portraits
+            = new Dictionary<FamilyMember, FamilyMemberPortrait>();
+
+        private Dictionary<FamilyMember, FamilyMemberResult> results
+            = new Dictionary<FamilyMember, FamilyMemberResult>();
+
         void Start()
         {
             DisplayedScore = 0;
 
-            EndOfGameResults results = ResultsEvaluation
+            EndOfGameResults endOfGameResults = ResultsEvaluation
                 .EvaluateGameResults(GameplayController
                     .Instance
                     .GetSelectedGifts());
 
-            results
+                float totalEnterTime = familyMemberEnterWaitTime + endOfGameResults.FamilyMemberResults.Length * familyMemberEnterStaggerTime;
+                float quirkBeginTime = totalEnterTime + familyMemberEnterWaitTime;
+
+            endOfGameResults
                 .FamilyMemberResults
                 .ForEach((result, i) =>
                 {
@@ -65,6 +75,8 @@ namespace Game.Components.UI.ResultsScreen
                         .SetFamilyMember(result.FamilyMember)
                         .SetHappinessLevel(result.HappinessLevel);
 
+                    portraits.Add(result.FamilyMember, portrait);
+                    results.Add(result.FamilyMember, result);
 
                     TimerManager.Schedule(
                         time: familyMemberEnterWaitTime + i * familyMemberEnterStaggerTime,
@@ -74,6 +86,14 @@ namespace Game.Components.UI.ResultsScreen
                         {
                             DisplayedScore += ResultsEvaluation
                                 .CalculateBaseScoreForGiftChoice(result.FamilyMember, result.Gift);
+                        });
+
+                    TimerManager.Schedule(
+                        time: quirkBeginTime + i * familyMemberEnterStaggerTime,
+                        id: this)
+                        .OnComplete(() =>
+                        {
+                            EvaluateQuirk(result.FamilyMember);
                         });
                 });
         }
@@ -88,6 +108,22 @@ namespace Game.Components.UI.ResultsScreen
         {
             GameplayController.Instance.RestartGame();
             SceneFunctions.TransitionScene("EndOfGameResults", "Gameplay");
+        }
+
+        private void EvaluateQuirk(FamilyMember member)
+        {
+            int modifiedScore;
+            member.Quirk.ApplyChanges(
+                source: member,
+                results: results,
+                score: DisplayedScore,
+                modifiedScore: out modifiedScore);
+
+            member.Quirk.AnimateChanges(
+                source: member,
+                portraits: portraits);
+
+            DisplayedScore = modifiedScore;
         }
     }
 }

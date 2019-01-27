@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Game.CSharpExtensions;
 using Game.Definitions;
+using Game.Gameplay.Quirks;
 
 namespace Game.Gameplay
 {
@@ -34,7 +35,8 @@ namespace Game.Gameplay
                                 cost: def.Cost,
                                 sprite: def.Sprite))
                             .Map((gift, i) => giftHappinessOptions[i])
-                            .AsReadOnly())
+                            .AsReadOnly()),
+                    quirk: new BraggartQuirk()
                 ));
             });
 
