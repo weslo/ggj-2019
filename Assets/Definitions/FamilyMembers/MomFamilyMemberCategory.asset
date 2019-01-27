@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: fbb6819ec7d924a70ad90d418976996a, type: 3}
+  m_Name: MomFamilyMemberCategory
+  m_EditorClassIdentifier: 
+  nameOptions:
+  - Daria
+  - Susan
+  - Cathy
+  - Krista
+  - Carol
+  relationshipNameOptions:
+  - Mom
+  portraitOptions:
+  - {fileID: 21300000, guid: d7b60b2d3168b4855bb912d4240aa796, type: 3}
+  - {fileID: 21300000, guid: 682ce49791de74d038e2754a44747b2c, type: 3}
+  - {fileID: 21300000, guid: 73d4db9b941cb446b84e6290050a0daa, type: 3}
+  - {fileID: 21300000, guid: f4553e088ab94411eb07b9f03ba45571, type: 3}
+  - {fileID: 21300000, guid: 4b1d0cb80b72146798fbf85b006609f4, type: 3}
+  - {fileID: 21300000, guid: ddc8603dbcc4143d0b444908ae17acc9, type: 3}
+  - {fileID: 21300000, guid: ec4e3a0ca14fc44d0be798a64f4fc360, type: 3}
+  - {fileID: 21300000, guid: 4827c4fdc09ad416f8b2911d04566189, type: 3}
+  - {fileID: 21300000, guid: 4286f5ba3c8704178852bbeaba758139, type: 3}
+  - {fileID: 21300000, guid: 34e46715f1cb44feb92d411f261ce642, type: 3}
+  giftCategoryOptions:
+  - {fileID: 11400000, guid: a525e8ac7ef684111a786a2824e710d9, type: 2}
+  quirkOptions:
+  - {fileID: 11400000, guid: 30ce47b9abf4d47d79f1cffb6dca71b4, type: 2}

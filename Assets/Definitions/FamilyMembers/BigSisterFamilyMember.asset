@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: fbb6819ec7d924a70ad90d418976996a, type: 3}
+  m_Name: BigSisterFamilyMember
+  m_EditorClassIdentifier: 
+  nameOptions:
+  - Jenna
+  - Erin
+  - Kathryn
+  - Noelle
+  - Rebecca
+  relationshipNameOptions:
+  - Sister
+  - Cousin
+  - Older Sister
+  - Big Sister
+  portraitOptions:
+  - {fileID: 21300000, guid: 25a70e5ce0ef44fdda9938ddce0dfc5e, type: 3}
+  - {fileID: 21300000, guid: 397421014b2234268a0b054ac7f9a80d, type: 3}
+  - {fileID: 21300000, guid: 187aa02a93e67423697809b03dcfadb8, type: 3}
+  - {fileID: 21300000, guid: e933970542c01427ba51d09117735807, type: 3}
+  - {fileID: 21300000, guid: ba7fad430659447f5a73a37a4f2c109c, type: 3}
+  - {fileID: 21300000, guid: ebe4c1f2b47bf440ea744342afba158a, type: 3}
+  giftCategoryOptions:
+  - {fileID: 11400000, guid: 52119c6123e6549799a3bac88bc0955a, type: 2}
+  quirkOptions:
+  - {fileID: 11400000, guid: 30ce47b9abf4d47d79f1cffb6dca71b4, type: 2}
