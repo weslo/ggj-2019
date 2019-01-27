@@ -12,12 +12,16 @@ using Game.UnityExtensions.Scenes;
 namespace Game.Components
 {
     public sealed class GameplayController : PersistentSingletonMonoBehaviour<GameplayController>
-    {[Header("Object References")]
-
+    {
         [SerializeField]
         private FamilyMemberGeneratorDefinition familyMemberGenerator = default(FamilyMemberGeneratorDefinition);
 
+        [SerializeField]
+        private int startingBudget = default(int);
+
         public event Action<FamilyMember, Gift> OnGiftSelected;
+
+        public event Action<int> OnBudgetChanged;
 
         public ReadOnlyCollection<FamilyMember> FamilyMembers
         {
@@ -25,8 +29,28 @@ namespace Game.Components
             private set;
         }
 
+        private int _budget;
+        public int Budget
+        {
+            get => _budget;
+            private set
+            {
+                if(_budget != value)
+                {
+                    _budget = value;
+                    OnBudgetChanged?.Invoke(_budget);
+                }
+            }
+        }
+
         private Dictionary<FamilyMember, Gift> selectedGifts
             = new Dictionary<FamilyMember, Gift>();
+
+        protected override void Awake()
+        {
+            base.Awake();
+            RestartGame();
+        }
 
         public void RestartGame()
         {
@@ -40,6 +64,8 @@ namespace Game.Components
                             HappinessLevel.Happy,
                             HappinessLevel.Love,
                         });
+
+            Budget = startingBudget;
             
             selectedGifts = FamilyMembers
                 .ToDictionary(
@@ -64,10 +90,26 @@ namespace Game.Components
                 throw new Exception($"Gift {gift.Name} is not a valid choice for {member.Name}.");
             }
 
+            if(gift.Cost > Budget)
+            {
+                throw new Exception($"Cannot afford {gift.Cost}.");
+            }
+
+            Budget -= gift.Cost;
+
             selectedGifts[member] = gift;
             OnGiftSelected?.Invoke(member, gift);
 
-            bool gameEnded = selectedGifts.All(kvp => kvp.Value != null);
+            bool purchasedGiftsForEveryone = selectedGifts.All(kvp => kvp.Value != null);
+            bool cannotAffordAnyMoreGifts = selectedGifts
+                .Keys
+                .All(m => m
+                    .GiftRequest
+                    .GiftOptions
+                    .Keys
+                    .All(g => g.Cost > Budget));
+
+            bool gameEnded = purchasedGiftsForEveryone || cannotAffordAnyMoreGifts;
             if(gameEnded)
             {
                 SceneFunctions.TransitionScene("Gameplay", "EndOfGameResults");

@@ -235,6 +235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   familyMemberGenerator: {fileID: 11400000, guid: dae48976f29f04bdbbbc9d96db3e7fdc,
     type: 2}
+  startingBudget: 400
 --- !u!4 &693771061
 Transform:
   m_ObjectHideFlags: 0

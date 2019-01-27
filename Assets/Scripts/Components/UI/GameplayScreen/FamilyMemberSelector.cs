@@ -79,7 +79,6 @@ namespace Game.Components.UI.GameplayScreen
 
         private FamilyMemberPortrait[] portraits;
 
-        
         void Start()
         {
             portraits = GameplayController
