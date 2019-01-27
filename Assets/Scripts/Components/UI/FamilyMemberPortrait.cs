@@ -10,6 +10,9 @@ namespace Game.Components.UI
         [SerializeField]
         private Image portraitImage = default(Image);
 
+        [SerializeField]
+        private Image happinessImage = default(Image);
+
         private FamilyMember _familyMember;
         public FamilyMember FamilyMember
         {
@@ -20,9 +23,28 @@ namespace Game.Components.UI
                 {
                     _familyMember = value;
 
-                    if(portraitImage)
+                    if(portraitImage != null)
                     {
                         portraitImage.sprite = _familyMember?.PortraitSprite;
+                    }
+                }
+            }
+        }
+
+        private HappinessLevel _happinessLevel;
+        public HappinessLevel HappinessLevel
+        {
+            get => _happinessLevel;
+            set
+            {
+                if(_happinessLevel != value)
+                {
+                    _happinessLevel = value;
+                    
+                    if(happinessImage != null)
+                    {
+                        happinessImage.enabled = true;
+                        happinessImage.sprite = HappinessIcons.Instance.GetHappinessLevelSprite(_happinessLevel);
                     }
                 }
             }
@@ -31,6 +53,12 @@ namespace Game.Components.UI
         public FamilyMemberPortrait SetFamilyMember(FamilyMember member)
         {
             FamilyMember = member;
+            return this;
+        }
+
+        public FamilyMemberPortrait SetHappinessLevel(HappinessLevel happinessLevel)
+        {
+            HappinessLevel = happinessLevel;
             return this;
         }
     }

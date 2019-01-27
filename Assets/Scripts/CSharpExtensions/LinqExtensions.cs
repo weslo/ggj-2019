@@ -87,5 +87,15 @@ namespace Game.CSharpExtensions
         {
             return new ReadOnlyDictionary<K, V>(dict);
         }
+
+        public static V Get<K, V>(this IDictionary<K, V> dict, K key, V fallback = default(V))
+        {
+            if(key == null || !dict.ContainsKey(key))
+            {
+                return fallback;
+            }
+
+            return dict[key];
+        }
     }
 }
