@@ -6,6 +6,9 @@ namespace Game.Definitions
     {
         None = 0,
         Braggart = 1,
+        Complainer = 2,
+        Complimenter = 3,
+        Sharing = 4,
     }
 
     [CreateAssetMenu(

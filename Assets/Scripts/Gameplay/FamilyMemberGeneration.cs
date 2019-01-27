@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Game.CSharpExtensions;
@@ -20,7 +21,6 @@ namespace Game.Gameplay
             {
                 FamilyMemberCategoryDefinition familyMemberCategory = generator.Categories.PickRandom();
                 GiftCategoryDefinition giftCategory = familyMemberCategory.GiftCategoryOptions.PickRandom();
-                QuirkDefinition quirk = familyMemberCategory.QuirkOptions.PickRandom();
 
                 members.Add(new FamilyMember(
                     name: familyMemberCategory.NameOptions.PickRandom(),
@@ -37,11 +37,23 @@ namespace Game.Gameplay
                                 sprite: def.Sprite))
                             .Map((gift, i) => giftHappinessOptions[i])
                             .AsReadOnly()),
-                    quirk: new BraggartQuirk(quirk.NameText, quirk.DescriptionText)
+                    quirk: GetQuirk(familyMemberCategory.QuirkOptions.PickRandom())
                 ));
             });
 
             return members.AsReadOnly();
+        }
+
+        private static AbstractQuirk GetQuirk(QuirkDefinition definition)
+        {
+            switch(definition.QuirkID)
+            {
+                case QuirkID.Braggart: return new BraggartQuirk(definition.NameText, definition.DescriptionText);
+                case QuirkID.Complainer: return new ComplainerQuirk(definition.NameText, definition.DescriptionText);
+                case QuirkID.Complimenter: return new ComplimenterQuirk(definition.NameText, definition.DescriptionText);
+                case QuirkID.Sharing: return new SharingQuirk(definition.NameText, definition.DescriptionText);
+                default: throw new Exception($"Quirk {definition.QuirkID.ToString()} does not have a handler.");
+            }
         }
     }
 }

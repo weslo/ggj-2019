@@ -31,3 +31,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bc3b39c79ceb44673a3e2d50a8a775f7, type: 2}
   quirkOptions:
   - {fileID: 11400000, guid: 30ce47b9abf4d47d79f1cffb6dca71b4, type: 2}
+  - {fileID: 11400000, guid: 237ad9a99e92e4a38b0e2d2a585e9aa6, type: 2}
+  - {fileID: 11400000, guid: 5a3f0baa72bf744bfaa8ff0b18ae64ce, type: 2}
+  - {fileID: 11400000, guid: 9c837791db83b4442ab0b79ff7a6b427, type: 2}
