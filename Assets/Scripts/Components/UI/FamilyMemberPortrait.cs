@@ -61,5 +61,10 @@ namespace Game.Components.UI
             HappinessLevel = happinessLevel;
             return this;
         }
+
+        public void PlayEnterAnimation()
+        {
+            Animator.Play("Enter");
+        }
     }
 }

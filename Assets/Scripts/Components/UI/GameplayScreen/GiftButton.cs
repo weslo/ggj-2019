@@ -108,6 +108,11 @@ namespace Game.Components.UI.GameplayScreen
 
         public void OnPointerEnter(PointerEventData data)
         {
+            if(!Button.interactable)
+            {
+                return;
+            }
+
             if(giftNameText != null)
             {
                 giftNameText.enabled = true;

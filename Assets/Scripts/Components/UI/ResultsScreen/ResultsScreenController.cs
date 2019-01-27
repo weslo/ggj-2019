@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using Game.Attributes;
+using Game.Components.Scheduling;
 using Game.Components.UI.Abstract;
 using Game.CSharpExtensions;
 using Game.Gameplay;
@@ -10,6 +11,8 @@ namespace Game.Components.UI.ResultsScreen
 {
     public sealed class ResultsScreenController : UIMonoBehaviour
     {
+        [Header("Object References")]
+
         [SerializeField]
         private FamilyMemberPortrait familyMemberPortraitPrefab = default(FamilyMemberPortrait);
 
@@ -18,6 +21,14 @@ namespace Game.Components.UI.ResultsScreen
 
         [SerializeField]
         private Text scoreText = default(Text);
+
+        [Header("Timing")]
+        
+        [SerializeField]
+        private float familyMemberEnterWaitTime = default(float);
+
+        [SerializeField]
+        private float familyMemberEnterStaggerTime = default(float);
 
         void Start()
         {
@@ -28,14 +39,25 @@ namespace Game.Components.UI.ResultsScreen
 
             results
                 .FamilyMemberResults
-                .ForEach(result =>
+                .ForEach((result, i) =>
                 {
-                    Instantiate(familyMemberPortraitPrefab, familyMemberResultsContainer)
+                    FamilyMemberPortrait portrait = Instantiate(familyMemberPortraitPrefab, familyMemberResultsContainer)
                         .SetFamilyMember(result.FamilyMember)
                         .SetHappinessLevel(result.HappinessLevel);
+
+
+                    TimerManager.Schedule(
+                        time: familyMemberEnterWaitTime + i * familyMemberEnterStaggerTime,
+                        id: this)
+                        .OnComplete(portrait.PlayEnterAnimation);
                 });
 
             scoreText.text = $"SCORE: {results.Score}";
+        }
+
+        void OnDestroy()
+        {
+            TimerManager.Cancel(this);
         }
 
         [UnityEventBinding]

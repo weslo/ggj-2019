@@ -11,9 +11,16 @@ namespace Game.Components.UI.Abstract
             private set;
         }
 
+        public Animator Animator
+        {
+            get;
+            private set;
+        }
+
         protected virtual void Awake()
         {
             RectTransform = GetComponent<RectTransform>();
+            Animator = GetComponent<Animator>();
         }
     }
 }
