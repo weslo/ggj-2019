@@ -26,7 +26,7 @@ namespace Game.Components.Scheduling
 
 			private float time;
 
-			public string ID
+			public object ID
 			{
 				get;
 				private set;
@@ -41,7 +41,7 @@ namespace Game.Components.Scheduling
 			public TimerInstance(
 				float duration,
 				float delay = 0,
-				string id = null)
+				object id = null)
 			{
 				this.duration = duration;
 				time = -delay;
@@ -126,20 +126,20 @@ namespace Game.Components.Scheduling
 			}
 		}
 
-		protected static TimerInstance Begin(float duration, float delay = 0, string id = null)
+		protected static TimerInstance Begin(float duration, float delay = 0, object id = null)
 		{
 			TimerInstance timer = new TimerInstance(duration, delay, id);
 			Instance.timers.Add(timer);
 			return timer;
 		}
 
-		public static void Cancel(string id)
+		public static void Cancel(object id)
 		{
 			TimerInstance[] toUpdate = new TimerInstance[Instance.timers.Count];
 			Instance.timers.CopyTo(toUpdate);
 			foreach(TimerInstance timer in toUpdate)
 			{
-				if(!string.IsNullOrEmpty(timer.ID) && timer.ID.Equals(id))
+				if(timer.ID != null && timer.ID.Equals(id))
 				{
 					Instance.timers.Remove(timer);
 				}

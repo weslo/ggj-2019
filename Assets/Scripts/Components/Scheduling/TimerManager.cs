@@ -4,7 +4,7 @@
 	{
 		public static TimerInstance Schedule(
 			float time,
-			string id = null)
+			object id = null)
 		{
 			return Begin(time, 0, id);
 		}

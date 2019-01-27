@@ -5,7 +5,7 @@
 		public static TimerInstance Tween(
 			float duration,
 			float delay = 0,
-			string id = null)
+			object id = null)
 		{
 			return Begin(duration, delay, id);
 		}

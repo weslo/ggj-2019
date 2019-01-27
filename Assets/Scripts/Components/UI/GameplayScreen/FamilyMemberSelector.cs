@@ -6,6 +6,7 @@ using Game.Attributes;
 using Game.Components.UI.Abstract;
 using Game.CSharpExtensions;
 using Game.Gameplay;
+using Game.Components.Scheduling;
 
 namespace Game.Components.UI.GameplayScreen
 {
@@ -46,24 +47,17 @@ namespace Game.Components.UI.GameplayScreen
             {
                 if(_selectedPortraitIndex != value)
                 {
-                    if(SelectedPortrait != null)
-                    {
-                        SelectedPortrait.RectTransform.localScale = Vector3.one * deselectedPortraitScale;
-                    }
-
                     _selectedPortraitIndex = value;
-
-                    if(SelectedPortrait != null)
-                    {
-                        SelectedPortrait.RectTransform.localScale = Vector3.one * selectedPortraitScale;
-                    }
-
                     onSelectFamilyMember?.Invoke(SelectedPortrait?.FamilyMember);
 
                     portraits.ForEach((portrait, index) =>
                     {
-                        portrait.RectTransform.localPosition = Vector3.right * distanceBetweenPortraits * (index - _selectedPortraitIndex);
-                        portrait.RectTransform.localScale = Vector3.one * (SelectedPortrait == portrait ? selectedPortraitScale : deselectedPortraitScale);
+                        TransformTweens.TweenLocalPosition(portrait.RectTransform,
+                            Vector3.right * distanceBetweenPortraits * (index - _selectedPortraitIndex),
+                            TransformTweens.QuickTweenDuration);
+                        TransformTweens.TweenLocalScale(portrait.RectTransform,
+                            Vector3.one * (SelectedPortrait == portrait ? selectedPortraitScale : deselectedPortraitScale),
+                            TransformTweens.QuickTweenDuration);
                     });
                 }
             }
