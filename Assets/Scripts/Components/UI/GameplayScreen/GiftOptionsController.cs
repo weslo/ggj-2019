@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Game.Attributes;
+using Game.Components.Scheduling;
 using Game.Components.UI.Abstract;
 using Game.Gameplay;
 using Game.UnityExtensions;
@@ -34,7 +35,6 @@ namespace Game.Components.UI.GameplayScreen
                 apply: (button, gift, index) =>
                 {
                     button.RectTransform.SetParent(RectTransform, false);
-                    button.RectTransform.localPosition = RectTransform.rect.center + Vector2.right * (distanceBetweenGiftButtons * index - (distanceBetweenGiftButtons * (giftButtonPool.Count - 1)) / 2);
                     button.Gift = gift;
                     button.HappinessLevel = selectedFamilyMember.GiftRequest.GiftOptions[gift];
 
@@ -43,6 +43,8 @@ namespace Game.Components.UI.GameplayScreen
                         .GetSelectedGift(selectedFamilyMember);
 
                     button.Button.interactable = selectedGift == null;
+                    
+                    Vector3 localPosition = RectTransform.rect.center + Vector2.right * (distanceBetweenGiftButtons * index - (distanceBetweenGiftButtons * (giftButtonPool.Count - 1)) / 2);
 
                     if(selectedGift == null)
                     {
@@ -53,8 +55,10 @@ namespace Game.Components.UI.GameplayScreen
                     }
                     else if(button.Gift == selectedGift)
                     {
-                        button.RectTransform.localPosition = button.RectTransform.localPosition + Vector3.up * purchasedGiftHeightModifer;
+                        localPosition += Vector3.up * purchasedGiftHeightModifer;
                     }
+
+                    TransformTweens.TweenLocalPosition(button.RectTransform, localPosition, TransformTweens.QuickTweenDuration);
                 });
         }
 
