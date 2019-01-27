@@ -88,19 +88,19 @@ namespace Game.Components.Scheduling
 
 			public TimerInstance OnStep(Action<float> step)
 			{
-				this.step = step;
+				this.step += step;
 				return this;
 			}
 
 			public TimerInstance OnBegin(Action onBegin)
 			{
-				this.onBegin = onBegin;
+				this.onBegin += onBegin;
 				return this;
 			}
 
 			public TimerInstance OnComplete(Action onComplete)
 			{
-				this.onComplete = onComplete;
+				this.onComplete += onComplete;
 				return this;
 			}
 

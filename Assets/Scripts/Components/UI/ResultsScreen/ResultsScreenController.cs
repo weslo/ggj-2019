@@ -30,8 +30,28 @@ namespace Game.Components.UI.ResultsScreen
         [SerializeField]
         private float familyMemberEnterStaggerTime = default(float);
 
+        private int _displayedScore = -1;
+        public int DisplayedScore
+        {
+            get => _displayedScore;
+            set
+            {
+                if(_displayedScore != value)
+                {
+                    _displayedScore = value;
+
+                    if(scoreText != null)
+                    {
+                        scoreText.text = $"SCORE: {_displayedScore}";
+                    }
+                }
+            }
+        }
+
         void Start()
         {
+            DisplayedScore = 0;
+
             EndOfGameResults results = ResultsEvaluation
                 .EvaluateGameResults(GameplayController
                     .Instance
@@ -49,10 +69,13 @@ namespace Game.Components.UI.ResultsScreen
                     TimerManager.Schedule(
                         time: familyMemberEnterWaitTime + i * familyMemberEnterStaggerTime,
                         id: this)
-                        .OnComplete(portrait.PlayEnterAnimation);
+                        .OnComplete(portrait.PlayEnterAnimation)
+                        .OnComplete(() =>
+                        {
+                            DisplayedScore += ResultsEvaluation
+                                .CalculateBaseScoreForGiftChoice(result.FamilyMember, result.Gift);
+                        });
                 });
-
-            scoreText.text = $"SCORE: {results.Score}";
         }
 
         void OnDestroy()

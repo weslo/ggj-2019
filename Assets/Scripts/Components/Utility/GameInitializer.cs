@@ -11,7 +11,14 @@ namespace Game.Components.Utility
         {
             if(!initialized)
             {
+                if(Application.platform == RuntimePlatform.OSXPlayer)
+                {
+                    PlayerPrefs.DeleteAll();
+                    Screen.SetResolution(1024, 768, FullScreenMode.Windowed);
+                }
+
                 SceneFunctions.LoadScene("Persistent");
+                
                 initialized = true;
             }
         }
