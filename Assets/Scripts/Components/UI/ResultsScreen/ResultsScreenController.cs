@@ -31,6 +31,12 @@ namespace Game.Components.UI.ResultsScreen
         [SerializeField]
         private float familyMemberEnterStaggerTime = default(float);
 
+        [SerializeField]
+        private float quirkEnterWaitTime = default(float);
+
+        [SerializeField]
+        private float quirkStaggerTime = default(float);
+
         private int _displayedScore = -1;
         public int DisplayedScore
         {
@@ -65,7 +71,7 @@ namespace Game.Components.UI.ResultsScreen
                     .GetSelectedGifts());
 
                 float totalEnterTime = familyMemberEnterWaitTime + endOfGameResults.FamilyMemberResults.Length * familyMemberEnterStaggerTime;
-                float quirkBeginTime = totalEnterTime + familyMemberEnterWaitTime;
+                float quirkBeginTime = totalEnterTime + quirkEnterWaitTime;
 
             endOfGameResults
                 .FamilyMemberResults
@@ -89,7 +95,7 @@ namespace Game.Components.UI.ResultsScreen
                         });
 
                     TimerManager.Schedule(
-                        time: quirkBeginTime + i * familyMemberEnterStaggerTime,
+                        time: quirkBeginTime + i * quirkStaggerTime,
                         id: this)
                         .OnComplete(() =>
                         {
@@ -101,6 +107,7 @@ namespace Game.Components.UI.ResultsScreen
         void OnDestroy()
         {
             TimerManager.Cancel(this);
+            TimerManager.Cancel(Gameplay.Quirks.AbstractQuirk.QuirkSchedulingKey);
         }
 
         [UnityEventBinding]

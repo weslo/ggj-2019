@@ -7,14 +7,20 @@ namespace Game.Gameplay.Quirks
     {
         public static readonly object QuirkSchedulingKey = new object();
         
-        public abstract void ApplyChanges(
+        public virtual void ApplyChanges(
             FamilyMember source,
             Dictionary<FamilyMember, FamilyMemberResult> results,
             int score,
-            out int modifiedScore);
+            out int modifiedScore)
+        {
+            modifiedScore = score;
+        }
 
-        public abstract void AnimateChanges(
+        public virtual void AnimateChanges(
             FamilyMember source,
-            Dictionary<FamilyMember, FamilyMemberPortrait> portraits);
+            Dictionary<FamilyMember, FamilyMemberPortrait> portraits)
+        {
+            portraits[source].PlayQuirkPingAnimation();
+        }
     }
 }

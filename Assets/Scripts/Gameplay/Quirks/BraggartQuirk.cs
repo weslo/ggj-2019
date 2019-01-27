@@ -12,18 +12,21 @@ namespace Game.Gameplay.Quirks
             int score,
             out int modifiedScore)
         {
-            modifiedScore = score + ResultsEvaluation.HappinessMultiplier;
+            base.ApplyChanges(source, results, score, out modifiedScore);
+            modifiedScore += 100;
         }
 
         public override void AnimateChanges(
             FamilyMember source,
             Dictionary<FamilyMember, FamilyMemberPortrait> portraits)
         {
+            base.AnimateChanges(source, portraits);
+
             portraits.ForEach((member, portrait) =>
             {
-                if(member == source)
+                if(member != source)
                 {
-                    portrait.PlayEnterAnimation();
+                    portrait.PlayPositivePingAnimation();
                 }
             });
         }

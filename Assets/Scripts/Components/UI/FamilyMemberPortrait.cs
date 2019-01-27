@@ -66,5 +66,20 @@ namespace Game.Components.UI
         {
             Animator.Play("Enter");
         }
+
+        public void PlayPositivePingAnimation()
+        {
+            Animator.Play("PositivePing");
+        }
+
+        public void PlayNegativePingAnimation()
+        {
+            Animator.Play("NegativePing");
+        }
+
+        public void PlayQuirkPingAnimation()
+        {
+            Animator.Play("QuirkPing");
+        }
     }
 }
