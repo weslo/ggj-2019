@@ -283,9 +283,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invalidSprite: {fileID: 21300000, guid: 3be67a755cf9945d28899d0134d71c63, type: 3}
-  satisfiedSprite: {fileID: 21300000, guid: 114068c568c2a4bafb3235b75da28dbf, type: 3}
-  happySprite: {fileID: 21300000, guid: adc95b8e612d643ee86d2aa5200e75d6, type: 3}
-  loveSprite: {fileID: 21300000, guid: 92428078cf3ea4247b38eb11835b9813, type: 3}
+  hateSprite: {fileID: 21300000, guid: 3a7ae27e3bde64cf1aabfbe2c78c858b, type: 3}
+  disappointedSprite: {fileID: 21300000, guid: 154bed0430fbc4a2eb89cfce4c0675fb, type: 3}
+  indifferentSprite: {fileID: 21300000, guid: 114068c568c2a4bafb3235b75da28dbf, type: 3}
+  satisfiedSprite: {fileID: 21300000, guid: adc95b8e612d643ee86d2aa5200e75d6, type: 3}
+  happySprite: {fileID: 21300000, guid: b6d0ae3037b1b4c31a2370198c46f8f4, type: 3}
+  loveSprite: {fileID: 21300000, guid: 0ae4aa77af7204b13a3b5a976ed6d8a7, type: 3}
+  favoriteSprite: {fileID: 21300000, guid: 92428078cf3ea4247b38eb11835b9813, type: 3}
 --- !u!4 &1002199305
 Transform:
   m_ObjectHideFlags: 0

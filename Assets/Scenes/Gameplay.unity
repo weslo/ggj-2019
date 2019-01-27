@@ -460,8 +460,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 16
+    m_Font: {fileID: 12800000, guid: 18df887c67a9e4a218c73fb8faacf7bd, type: 3}
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -669,7 +669,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   giftButtonPrefab: {fileID: 2235975726792588202, guid: ac8909dbfabe14d33851ae5284e47671,
     type: 3}
-  distanceBetweenGiftButtons: 100
+  distanceBetweenGiftButtons: 130
   purchasedGiftHeightModifer: 30
 --- !u!1 &1159156797
 GameObject:
@@ -970,7 +970,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 68c156718feaa45b684c7c73896c9d66, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0

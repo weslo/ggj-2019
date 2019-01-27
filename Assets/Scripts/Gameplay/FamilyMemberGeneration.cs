@@ -20,6 +20,7 @@ namespace Game.Gameplay
             {
                 FamilyMemberCategoryDefinition familyMemberCategory = generator.Categories.PickRandom();
                 GiftCategoryDefinition giftCategory = familyMemberCategory.GiftCategoryOptions.PickRandom();
+                QuirkDefinition quirk = familyMemberCategory.QuirkOptions.PickRandom();
 
                 members.Add(new FamilyMember(
                     name: familyMemberCategory.NameOptions.PickRandom(),
@@ -36,7 +37,7 @@ namespace Game.Gameplay
                                 sprite: def.Sprite))
                             .Map((gift, i) => giftHappinessOptions[i])
                             .AsReadOnly()),
-                    quirk: new BraggartQuirk()
+                    quirk: new BraggartQuirk(quirk.NameText, quirk.DescriptionText)
                 ));
             });
 

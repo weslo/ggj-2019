@@ -6,20 +6,25 @@ namespace Game.Gameplay.Quirks
     public abstract class AbstractQuirk
     {
         public static readonly object QuirkSchedulingKey = new object();
-        
-        public virtual void ApplyChanges(
-            FamilyMember source,
-            Dictionary<FamilyMember, FamilyMemberResult> results,
-            int score,
-            out int modifiedScore)
+
+        public readonly string Name;
+
+        public readonly string Description;
+
+        public AbstractQuirk(string name, string description)
         {
-            modifiedScore = score;
+            Name = name;
+            Description = description;
         }
 
         public virtual void AnimateChanges(
             FamilyMember source,
-            Dictionary<FamilyMember, FamilyMemberPortrait> portraits)
+            Dictionary<FamilyMember, FamilyMemberResult> results,
+            Dictionary<FamilyMember, FamilyMemberPortrait> portraits,
+            int score,
+            out int modifiedScore)
         {
+            modifiedScore = score;
             portraits[source].PlayQuirkPingAnimation();
         }
     }

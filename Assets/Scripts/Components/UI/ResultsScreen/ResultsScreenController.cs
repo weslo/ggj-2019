@@ -120,15 +120,13 @@ namespace Game.Components.UI.ResultsScreen
         private void EvaluateQuirk(FamilyMember member)
         {
             int modifiedScore;
-            member.Quirk.ApplyChanges(
-                source: member,
-                results: results,
-                score: DisplayedScore,
-                modifiedScore: out modifiedScore);
 
             member.Quirk.AnimateChanges(
                 source: member,
-                portraits: portraits);
+                results: results,
+                portraits: portraits,
+                score: DisplayedScore,
+                modifiedScore: out modifiedScore);
 
             DisplayedScore = modifiedScore;
         }

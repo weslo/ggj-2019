@@ -43,12 +43,12 @@ namespace Game.Components.UI.GameplayScreen
 
             if(quirkTitleText != null)
             {
-                quirkTitleText.text = string.Empty;
+                quirkTitleText.text = member?.Quirk.Name;
             }
 
             if(quirkDescriptionText != null)
             {
-                quirkDescriptionText.text = string.Empty;
+                quirkDescriptionText.text = member?.Quirk.Description;
             }
         }
     }

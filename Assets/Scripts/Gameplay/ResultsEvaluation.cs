@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using Game.CSharpExtensions;
 
 namespace Game.Gameplay
@@ -8,6 +8,17 @@ namespace Game.Gameplay
     public static class ResultsEvaluation
     {
         public const int HappinessMultiplier = 100;
+
+        private static readonly HappinessLevel[] happinessLevelOrder = new []
+        {
+            HappinessLevel.Hate,
+            HappinessLevel.Disappointed,
+            HappinessLevel.Indifferent,
+            HappinessLevel.Satisfied,
+            HappinessLevel.Happy,
+            HappinessLevel.Love,
+            HappinessLevel.Favorite,
+        };
 
         public static EndOfGameResults EvaluateGameResults(ReadOnlyDictionary<FamilyMember, Gift> choices)
         {
@@ -40,7 +51,47 @@ namespace Game.Gameplay
         public static int CalculateBaseScoreForGiftChoice(FamilyMember member, Gift gift)
         {
             HappinessLevel happiness = GetHappinessLevelForGiftChoice(member, gift);
+            return GetHappinessScoreValue(happiness);
+        }
+
+        public static HappinessLevel IncrementHappiness(HappinessLevel level)
+        {
+            if(level == HappinessLevel.NoGift)
+            {
+                return level;
+            }
+
+            if(level == HappinessLevel.Favorite)
+            {
+                return level;
+            }
+
+            return happinessLevelOrder[Array.IndexOf(happinessLevelOrder, level) + 1];
+        }
+
+        public static HappinessLevel DecrementHappiness(HappinessLevel level)
+        {
+            if(level == HappinessLevel.NoGift)
+            {
+                return level;
+            }
+
+            if(level == HappinessLevel.Hate)
+            {
+                return level;
+            }
+
+            return happinessLevelOrder[Array.IndexOf(happinessLevelOrder, level) - 1];
+        }
+
+        public static int GetHappinessScoreValue(HappinessLevel happiness)
+        {
             return (int)happiness * HappinessMultiplier;
+        }
+
+        public static int GetHappinessScoreDifference(HappinessLevel prev, HappinessLevel next)
+        {
+            return GetHappinessScoreValue(next) - GetHappinessScoreValue(prev);
         }
     }
 }
