@@ -42,7 +42,7 @@ namespace Game.Components.UI.GameplayScreen
                         .Instance
                         .GetSelectedGift(selectedFamilyMember);
 
-                    button.Button.interactable = selectedGift == null;
+                    button.Button.interactable = selectedGift == null && GameplayController.Instance.Budget >= gift.Cost;
                     
                     Vector3 localPosition = RectTransform.rect.center + Vector2.right * (distanceBetweenGiftButtons * index - (distanceBetweenGiftButtons * (giftButtonPool.Count - 1)) / 2);
 
